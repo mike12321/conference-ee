@@ -7,7 +7,7 @@ import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
 import com.conference.entity.User;
 import com.conference.exceptions.UnknownUserException;
-import com.conference.service.IUserServ;
+import com.conference.service.UserService;
 import com.conference.service.ServiceFactory;
 import org.apache.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class CommandMissing implements Command {
         ExecutionResult result = new ExecutionResult();
         result.setDirection(Direction.FORWARD);
         try {
-            IUserServ userServ = ServiceFactory.getUserService();
+            UserService userServ = ServiceFactory.getUserService();
             User guest = userServ.findUser("Guest", "1");
 
             if (!content.checkSessionAttribute("user"))

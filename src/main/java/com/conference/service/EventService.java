@@ -1,12 +1,12 @@
 package com.conference.service;
 
-import com.conference.domain.Product;
+import com.conference.entity.Event;
+import com.conference.entity.UserEvent;
 import com.conference.exceptions.ProductServiceException;
 
 import java.util.List;
-import java.util.Set;
 
-public interface IProductServ {
+public interface EventService {
 
     /**
      * Calculates total number of products records in DB
@@ -19,7 +19,7 @@ public interface IProductServ {
      * @return List of all products
      * @throws ProductServiceException if unable to retrieve information for certain reasons
      */
-    List<Product> findAllProducts() throws ProductServiceException;
+    List<Event> findAllProducts() throws ProductServiceException;
 
     /**
      * Creates a set of all product codes
@@ -35,7 +35,7 @@ public interface IProductServ {
      * @return List of products
      * @throws ProductServiceException if unable to retrieve information for certain reasons
      */
-    List<Product> findProducts(Integer from, Integer offset) throws ProductServiceException;
+    List<Event> findProducts(Integer from, Integer offset) throws ProductServiceException;
 
     /**
      * Finds a product by product code
@@ -43,29 +43,29 @@ public interface IProductServ {
      * @return
      * @throws ProductServiceException if unable to retrieve information for certain reasons
      */
-    Product findProductById(int id) throws ProductServiceException;
+    Event findProductById(int id) throws ProductServiceException;
 
     /**
-     * Adds a new product in DB
-     * @param product Product to add
+     * Adds a new event in DB
+     * @param event Event to add
      * @return true if operation success and false if fails
      */
-    boolean addProduct(Product product);
+    boolean addProduct(Event event);
 
     /**
-     * Updates an existent product in DB
-     * @param product - Product to update
+     * Updates an existent event in DB
+     * @param event - Event to update
      * @return true if operation success and false if fails
      */
 
-    boolean updateProduct(Product product);
+    boolean updateProduct(Event event);
 
     /**
      * Deletes product from DB
-     * @param product - Product to delete
+     * @param product - Event to delete
      * @return true if operation success and false if fails
      */
-//    boolean deleteProduct(Product product);
+//    boolean deleteProduct(Event product);
 
     /**
      * Deletes product from DB by code
@@ -74,4 +74,6 @@ public interface IProductServ {
      */
 
     boolean deleteProduct(int id);
+
+    boolean assignUserToEvent(UserEvent userEvent);
 }

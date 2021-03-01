@@ -1,7 +1,7 @@
 package com.conference.dao.implementation;
 
 import com.conference.dao.GenericAbstractDao;
-import com.conference.dao.IUserDao;
+import com.conference.dao.UserDao;
 import com.conference.dao.Mapper;
 import com.conference.entity.User;
 import com.conference.entity.UserRole;
@@ -11,12 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class UserDaoImpl extends GenericAbstractDao<User> implements IUserDao {
+public class UserDaoImpl extends GenericAbstractDao<User> implements UserDao {
     private Connection connection;
-    private static String SQL_select_base = "SELECT * FROM users JOIN user_roles ON users.role_id=user_roles.role_id " +
-            "ORDER BY user_id ";
-    private static String SQL_selectAll = "SELECT * FROM users JOIN user_roles ON users.role_id=user_roles.role_id " +
-            "ORDER BY user_id;";
     private static String SQL_selectById =      "SELECT u.*, r.name as 'role' FROM users u \n" +
                                                 "JOIN user_roles ur ON ur.user_id=u.id\n" +
                                                 "join roles r ON ur.role_id=r.id\n" +
@@ -58,21 +54,6 @@ public class UserDaoImpl extends GenericAbstractDao<User> implements IUserDao {
         super.setMapperToDB(mapperToDB);
         super.setMapperFromDB(mapperFromDB);
     }
-
-//    @Override
-//    public Integer calculateUsersNumber() throws DataNotFoundException {
-//        return calculateRowCounts(connection, "users");
-//    }
-
-//    @Override
-//    public List<User> findAllUsersInDB() throws DataNotFoundException {
-//        return findAll(connection, User.class, SQL_selectAll);
-//    }
-
-//    @Override
-//    public List<User> findUsers(Integer first, Integer offset) throws DataNotFoundException {
-//        return findAllFromTo(connection, User.class, first, offset, SQL_select_base);
-//    }
 
 //    @Override
 //    public List<User> findUserByRole(UserRole role) throws DataNotFoundException {

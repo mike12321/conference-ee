@@ -6,7 +6,7 @@ import com.conference.entity.UserRole;
 
 import java.util.List;
 
-public interface IUserServ {
+public interface UserService {
 
 //    /**
 //     * Calculates total number of User records in DB

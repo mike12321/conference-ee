@@ -20,40 +20,40 @@
 <div class = "inner_div">
     <form name="productForm" method="post" action="project" >
         <input type="hidden" name="command" value="updateProduct" />
-        <input type="hidden" name="id" value="${product.id}" />
-        <input type="hidden" name="reserved" value="${product.reservedQuantity}" />
+        <input type="hidden" name="id" value="${event.id}" />
+        <input type="hidden" name="reserved" value="${event.reservedQuantity}" />
         <h4><fmt:message key="editProduct.code" bundle="${legend}"/></h4>
-        <input type="text" name="code" size="24" class="input" value="${product.code}" required/><br/>
+        <input type="text" name="code" size="24" class="input" value="${event.code}" required/><br/>
         <h4><fmt:message key="editProduct.nameRu" bundle="${legend}"/></h4>
-        <textarea rows="3" cols="48" name="nameRu" required>${product.nameRu}</textarea><br/>
+        <textarea rows="3" cols="48" name="nameRu" required>${event.nameRu}</textarea><br/>
         <h4><fmt:message key="editProduct.nameEn" bundle="${legend}"/></h4>
-        <textarea rows="3" cols="48" name="nameEn" required>${product.nameEn}</textarea><br/>
+        <textarea rows="3" cols="48" name="nameEn" required>${event.nameEn}</textarea><br/>
         <h4><fmt:message key="editProduct.descriptionRu" bundle="${legend}"/></h4>
-        <textarea rows="3" cols="48" name="descriptionRu" required>${product.descriptionRu}</textarea><br/>
+        <textarea rows="3" cols="48" name="descriptionRu" required>${event.descriptionRu}</textarea><br/>
         <h4><fmt:message key="editProduct.descriptionEn" bundle="${legend}"/></h4>
-        <textarea rows="3" cols="48" name="descriptionEn" required>${product.descriptionEn}</textarea><br/>
+        <textarea rows="3" cols="48" name="descriptionEn" required>${event.descriptionEn}</textarea><br/>
         <h4><fmt:message key="editProduct.cost" bundle="${legend}"/></h4>
-        <input type="text" name="cost" size="24" class="input" value="${product.cost}" required/><br/><br/>
-        <c:if test="${product.available}">
+        <input type="text" name="cost" size="24" class="input" value="${event.cost}" required/><br/><br/>
+        <c:if test="${event.available}">
             <input type="checkbox" name="isAvailable" checked/>
                 <b><fmt:message key="editProduct.inStock" bundle="${legend}"/></b>
             <br/>
         </c:if>
-        <c:if test="${!product.available}">
+        <c:if test="${!event.available}">
             <input type="checkbox" name="isAvailable" />
                 <b><fmt:message key="editProduct.inStock" bundle="${legend}"/></b>
             <br/>
         </c:if>
         <h4><fmt:message key="editProduct.quantity" bundle="${legend}"/></h4>
-        <input type="text" name="quantity" size="24" class="input" value="${product.quantity}"/><br/>
+        <input type="text" name="quantity" size="24" class="input" value="${event.quantity}"/><br/>
         <h4><fmt:message key="editProduct.uomRu" bundle="${legend}"/></h4>
-        <input type="text" name="uomRu" size="24" class="input" required value="${product.uomRu}"/><br/>
+        <input type="text" name="uomRu" size="24" class="input" required value="${event.uomRu}"/><br/>
         <h4><fmt:message key="editProduct.uomEn" bundle="${legend}"/></h4>
-        <input type="text" name="uomEn" size="24" class="input" required value="${product.uomEn}"/><br/>
+        <input type="text" name="uomEn" size="24" class="input" required value="${event.uomEn}"/><br/>
         <h4><fmt:message key="editProduct.notesRu" bundle="${legend}"/></h4>
-        <textarea rows="3" cols="48" name="notesRu">${product.notesRu}</textarea><br/>
+        <textarea rows="3" cols="48" name="notesRu">${event.notesRu}</textarea><br/>
         <h4><fmt:message key="editProduct.notesEn" bundle="${legend}"/></h4>
-        <textarea rows="3" cols="48" name="notesEn">${product.notesEn}</textarea><br/>
+        <textarea rows="3" cols="48" name="notesEn">${event.notesEn}</textarea><br/>
         <div class="button_div">
             <button class="bigbutton">
                 <fmt:message key="editProduct.save" bundle="${buttons}"/>

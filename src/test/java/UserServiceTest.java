@@ -2,7 +2,7 @@
 //import com.conference.entity.UserRole;
 //import com.conference.exceptions.ProductServiceException;
 //import com.conference.exceptions.UnknownUserException;
-//import com.conference.service.IUserServ;
+//import com.conference.service.UserService;
 //import com.conference.service.ServiceFactory;
 //import org.apache.log4j.Logger;
 //import org.junit.AfterClass;
@@ -14,7 +14,7 @@
 //
 //public class UserServiceTest {
 //
-//    private static IUserServ userService;
+//    private static UserService userService;
 //    private static User testUser;
 //    private final static String CORRECT_USER_NAME = "Yaroslav";
 //    private final static String CORRECT_USER_PASSWORD = "yaroslav";
@@ -51,7 +51,7 @@
 //    /** User Validator tests */
 //
 //
-//    /** Product CRUD operations tests */
+//    /** Event CRUD operations tests */
 //    @Test
 //    @Ignore
 //    public void testFindUser1() throws UnknownUserException {

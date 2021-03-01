@@ -100,15 +100,15 @@
 <%--                <th style="width: 10%;"><fmt:message key = "main.table.col6" bundle = "${legend}"/></th>--%>
 <%--                <th></th>--%>
             </tr>
-            <c:forEach items="${products}" var="product" varStatus="loop">
+            <c:forEach items="${events}" var="event" varStatus="loop">
             <tr>
                 <td class="tdc"><c:out value="${loop.index + 1}"/></td>
-                <td class="tdc"><c:out value="${product.title}"/></td>
-                <td class="tdl"><c:out value="${product.dateTime}"/></td>
+                <td class="tdc"><c:out value="${event.title}"/></td>
+                <td class="tdl"><c:out value="${event.dateTime}"/></td>
                 <td class="tdc">
                     <form name="eventDetails" method="post" action="project" >
                         <input type="hidden" name="command" value="openEventDetailsPage" />
-                        <input type="hidden" name="id" value="${product.id}">
+                        <input type="hidden" name="id" value="${event.id}">
                         <button class="smallbutton">
                             <fmt:message key="main.eventDetails" bundle="${buttons}"/>
                         </button>

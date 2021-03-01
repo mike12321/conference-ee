@@ -5,9 +5,9 @@ import com.conference.config.Configuration;
 import com.conference.controller.Direction;
 import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
-import com.conference.domain.Product;
+import com.conference.entity.Event;
 import com.conference.entity.Topic;
-import com.conference.service.IProductServ;
+import com.conference.service.EventService;
 import com.conference.service.ServiceFactory;
 import com.conference.service.TopicService;
 import org.apache.log4j.Logger;
@@ -24,15 +24,15 @@ public class CommandOpenEventDetailsPage implements Command {
         ExecutionResult result = new ExecutionResult();
 
         try {
-            IProductServ prodServ = ServiceFactory.getProductService();
+            EventService prodServ = ServiceFactory.getEventService();
             TopicService topicService = ServiceFactory.getTopicService();
             int id = Integer.parseInt(content.getRequestParameter("id")[0]);
-            Product product = prodServ.findProductById(id);
+            Event event = prodServ.findProductById(id);
             List<Topic> topics = topicService.findByEventId(id);
 
             result.setDirection(Direction.FORWARD);
             result.addRequestAttribute("topics", topics);
-            result.addRequestAttribute("event", product);
+            result.addRequestAttribute("event", event);
             result.setPage(conf.getPage("eventDetails"));
         }
         catch (Exception e) {

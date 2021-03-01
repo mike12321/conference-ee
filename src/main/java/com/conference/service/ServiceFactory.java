@@ -7,12 +7,12 @@ public class ServiceFactory {
     public ServiceFactory() {
     }
 
-    public static IUserServ getUserService() {
-        return new UserService();
+    public static UserService getUserService() {
+        return new UserServiceImpl();
     }
 
-    public static IProductServ getProductService() {
-        return new ProductService();
+    public static EventService getEventService() {
+        return new EventServiceImpl();
     }
 
     public static TopicService getTopicService() {

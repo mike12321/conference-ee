@@ -1,14 +1,14 @@
 package com.conference.dao;
 
-import com.conference.domain.Product;
+import com.conference.entity.Event;
 import com.conference.exceptions.DataNotFoundException;
 
 import java.util.List;
 
 /**
- * CRUD operations interface for Product entity
+ * CRUD operations interface for Event entity
  */
-public interface IProductDao {
+public interface EventDao {
 
     /**
      * Calculates total product number available in DB
@@ -22,7 +22,7 @@ public interface IProductDao {
      * @return List of all products in DB
      * @throws DataNotFoundException if connection is down, broken or unable to retrieve information for certain reasons
      */
-    List<Product> findAllProductsInDB() throws DataNotFoundException;
+    List<Event> findAllProductsInDB() throws DataNotFoundException;
 
     /**
      * Finds products in DB from
@@ -31,7 +31,7 @@ public interface IProductDao {
      * @return List of all products in DB
      * @throws DataNotFoundException if connection is down, broken or unable to retrieve information for certain reasons
      */
-    List<Product> findProductsInDB(Integer first, Integer offset) throws DataNotFoundException;
+    List<Event> findProductsInDB(Integer first, Integer offset) throws DataNotFoundException;
 
     /**
      * Finds product in DB by id number
@@ -39,7 +39,7 @@ public interface IProductDao {
      * @return product by id number
      * @throws DataNotFoundException if connection is down, broken or unable to retrieve information for certain reasons
      */
-    Product findProductById(Integer id) throws DataNotFoundException;
+    Event findProductById(Integer id) throws DataNotFoundException;
 
     /**
      * Finds product in DB by product ordering code
@@ -47,21 +47,21 @@ public interface IProductDao {
      * @return product by product ordering code
      * @throws DataNotFoundException if connection is down, broken or unable to retrieve information for certain reasons
      */
-//    Product findProductByCode(String code) throws DataNotFoundException;
+//    Event findProductByCode(String code) throws DataNotFoundException;
 
     /**
-     * Adds new product to database
-     * @param product - product to add in DB
+     * Adds new event to database
+     * @param event - event to add in DB
      * @return true if operation success and false if fails
      */
-    boolean addProductToDB(Product product);
+    boolean addProductToDB(Event event);
 
     /**
-     * Updates existent product to database
-     * @param product - product to update in DB
+     * Updates existent event to database
+     * @param event - event to update in DB
      * @return true if operation success and false if fails
      */
-    boolean updateProductInDB(Product product);
+    boolean updateProductInDB(Event event);
 
     /**
      * Deletes existent product from database by product id number
@@ -69,11 +69,4 @@ public interface IProductDao {
      * @return true if operation success and false if fails
      */
     boolean deleteProductFromDB(Integer id);
-
-    /**
-     * Deletes existent product from database by product ordering code
-     * @param code - product ordering code
-     * @return true if operation success and false if fails
-     */
-//    boolean deleteProductFromDB(String code);
 }

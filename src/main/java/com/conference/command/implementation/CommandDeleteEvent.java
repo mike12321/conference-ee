@@ -5,8 +5,8 @@ import com.conference.config.Configuration;
 import com.conference.controller.Direction;
 import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
-import com.conference.service.IProductServ;
-import com.conference.service.implementation.ProductService;
+import com.conference.service.EventService;
+import com.conference.service.implementation.EventServiceImpl;
 import org.apache.log4j.Logger;
 
 public class CommandDeleteEvent implements Command {
@@ -19,7 +19,7 @@ public class CommandDeleteEvent implements Command {
         Configuration configuration = Configuration.getInstance();
 
         try {
-            IProductServ productServ = new ProductService();
+            EventService productServ = new EventServiceImpl();
             int id = Integer.parseInt(content.getRequestParameter("id")[0]);
 
             productServ.deleteProduct(id);

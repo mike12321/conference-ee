@@ -5,13 +5,12 @@ import com.conference.config.Configuration;
 import com.conference.controller.Direction;
 import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
-import com.conference.domain.Product;
-import com.conference.service.IProductServ;
+import com.conference.entity.Event;
+import com.conference.service.EventService;
 import com.conference.service.ServiceFactory;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class CommandUpdateEvent implements Command {
 
@@ -23,14 +22,14 @@ public class CommandUpdateEvent implements Command {
         ExecutionResult result = new ExecutionResult();
 
         try {
-            IProductServ productServ = ServiceFactory.getProductService();
-            Product product = new Product();
+            EventService productServ = ServiceFactory.getEventService();
+            Event event = new Event();
 
-            product.setId(Integer.parseInt(content.getRequestParameter("id")[0]));
-            product.setDateTime(LocalDateTime.parse(content.getRequestParameter("date")[0]));
-            product.setTitle(content.getRequestParameter("title")[0]);
+            event.setId(Integer.parseInt(content.getRequestParameter("id")[0]));
+            event.setDateTime(LocalDateTime.parse(content.getRequestParameter("date")[0]));
+            event.setTitle(content.getRequestParameter("title")[0]);
 
-            productServ.updateProduct(product);
+            productServ.updateProduct(event);
             result.setDirection(Direction.FORWARD);
             result.setPage(configuration.getPage("redirect_home"));
         } catch (Exception exception) {

@@ -1,19 +1,19 @@
 package com.conference.service.implementation;
 
 import com.conference.exceptions.*;
-import com.conference.service.IUserServ;
+import com.conference.service.UserService;
 import com.conference.dao.DaoFactory;
 import com.conference.dao.DataBaseSelector;
-import com.conference.dao.IUserDao;
+import com.conference.dao.UserDao;
 import com.conference.entity.User;
 import org.apache.log4j.Logger;
 
-public class UserService implements IUserServ {
+public class UserServiceImpl implements UserService {
 
     private static final DataBaseSelector source = DataBaseSelector.MY_SQL;
-    private static final Logger log = Logger.getLogger(UserService.class);
+    private static final Logger log = Logger.getLogger(UserServiceImpl.class);
     private static DaoFactory daoFactory;
-    private static IUserDao userDao;
+    private static UserDao userDao;
 
     static {
         try {

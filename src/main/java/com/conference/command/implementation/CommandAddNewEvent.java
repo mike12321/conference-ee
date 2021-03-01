@@ -6,9 +6,9 @@ import com.conference.config.Configuration;
 import com.conference.controller.Direction;
 import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
-import com.conference.domain.Product;
+import com.conference.entity.Event;
 import com.conference.entity.UserRole;
-import com.conference.service.IProductServ;
+import com.conference.service.EventService;
 import com.conference.service.ServiceFactory;
 import org.apache.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class CommandAddNewEvent implements Command {
     public ExecutionResult execute(SessionRequestContent content) {
         Configuration conf = Configuration.getInstance();
         ExecutionResult result = new ExecutionResult();
-        IProductServ serv = ServiceFactory.getProductService();
+        EventService serv = ServiceFactory.getEventService();
         result.setDirection(Direction.FORWARD);
         try {
             if (!Security.checkSecurity(content, UserRole.ROLE_ADMIN)) {
@@ -32,11 +32,11 @@ public class CommandAddNewEvent implements Command {
                 return result;
             }
 
-            Product product = new Product();
-            product.setTitle(content.getRequestParameter("title")[0]);
-            product.setDateTime(LocalDateTime.parse(content.getRequestParameter("date")[0], DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
+            Event event = new Event();
+            event.setTitle(content.getRequestParameter("title")[0]);
+            event.setDateTime(LocalDateTime.parse(content.getRequestParameter("date")[0], DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
 
-            if (serv.addProduct(product)) {
+            if (serv.addProduct(event)) {
                 result.setPage(conf.getPage("redirect_manageProducts"));
             }
             else {

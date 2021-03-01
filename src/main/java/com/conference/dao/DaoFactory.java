@@ -14,15 +14,17 @@ public abstract class DaoFactory {
      * Creates User DAO
      * @return User DAO
      */
-    public abstract IUserDao getUserDao();
+    public abstract UserDao getUserDao();
 
     /**
-     * Product User DAO
-     * @return Product DAO
+     * Event User DAO
+     * @return Event DAO
      */
-    public abstract IProductDao getProductDao();
+    public abstract EventDao getProductDao();
 
     public abstract TopicDao getTopicDao();
+
+    public abstract UserEventDao getUserEventDao();
 
     /**
      * Closes connection to Data Source
@@ -66,15 +68,6 @@ public abstract class DaoFactory {
         switch (dataBase) {
             case MY_SQL:
                 return new MySQLDaoFactory();
-            case MS_SQL:
-                log.error("Database " + dataBase + " not supported yet");
-                throw new DataBaseNotSupportedException(dataBase);
-            case ORACLE:
-                log.error("Database " + dataBase + " not supported yet");
-                throw new DataBaseNotSupportedException(dataBase);
-            case POSTGRESS:
-                log.error("Database " + dataBase + " not supported yet");
-                throw new DataBaseNotSupportedException(dataBase);
             default:
                 log.error("Database type not set");
                 throw new DataBaseNotSupportedException("Database type not set");

@@ -131,17 +131,23 @@ public class MySQLDaoFactory extends DaoFactory {
     }
 
     @Override
-    public IUserDao getUserDao() {
+    public UserDao getUserDao() {
         return new UserDaoImpl(connection);
     }
 
     @Override
-    public IProductDao getProductDao() {
-        return new ProductDaoImpl(connection);
+    public EventDao getProductDao() {
+        return new EventDaoImpl(connection);
     }
 
     @Override
     public TopicDao getTopicDao() {
         return new TopicDaoImpl(connection);
     }
+
+    @Override
+    public UserEventDao getUserEventDao() {
+        return new UserEventImpl(connection);
+    }
+
 }

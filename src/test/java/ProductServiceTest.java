@@ -1,5 +1,5 @@
 //import com.conference.exceptions.ProductServiceException;
-//import com.conference.service.IProductServ;
+//import com.conference.service.EventService;
 //import com.conference.service.ServiceFactory;
 //import org.apache.log4j.Logger;
 //import org.junit.AfterClass;
@@ -13,9 +13,9 @@
 //
 //public class ProductServiceTest {
 //
-//    private static IProductServ productService;
-//    private static Product correctProduct;
-//    private static Product uncorrectProduct;
+//    private static EventService productService;
+//    private static Event correctProduct;
+//    private static Event uncorrectProduct;
 //    private static final String PRODUCT_CODE = "TEST001";
 //
 //    private static final Logger log = Logger.getLogger(ProductServiceTest.class);
@@ -31,7 +31,7 @@
 //    @AfterClass
 //    public static void close() throws ProductServiceException {
 //        try {
-//            //ProductService.deleteProduct(PRODUCT_CODE);
+//            //EventServiceImpl.deleteProduct(PRODUCT_CODE);
 //        } catch (Exception e) {}
 //        log.info("Finishing tests");
 //        correctProduct = null;
@@ -39,8 +39,8 @@
 //        System.gc();
 //    }
 //
-//    private Product createTestProduct() {
-//        Product product = new Product().addCode(PRODUCT_CODE).addAvailable(true)
+//    private Event createTestProduct() {
+//        Event product = new Event().addCode(PRODUCT_CODE).addAvailable(true)
 //                .addNameEn("Royal Canin Kitten 30 - 120").addNameRu("Royal Canin Kitten 30 - 120")
 //                .addDescriptionEn("Royal Canin dry feed for kittens 30 - 120 month")
 //                .addDescriptionRu("Корм Роял Канин для котят в возрасте 30 - 120 месяцeв")
@@ -50,9 +50,9 @@
 //        return product;
 //    }
 //
-//    /** Product Validator tests */
+//    /** Event Validator tests */
 //
-//    /** Product CRUD operations tests */
+//    /** Event CRUD operations tests */
 //    @Test
 //    @Ignore
 //    @Ordinal(order = 3)
@@ -71,10 +71,10 @@
 //    @Ignore
 //    @Ordinal(order = 5)
 //    public void testAddProduct() throws ProductServiceException {
-//        Product testProduct = createTestProduct();
+//        Event testProduct = createTestProduct();
 //        log.info(testProduct);
 //        boolean result = productService.addProduct(testProduct);
-//        Product product = productService.findProductByCode(PRODUCT_CODE);
+//        Event product = productService.findProductByCode(PRODUCT_CODE);
 //        assertTrue(result && product.equals(testProduct));
 //    }
 //
@@ -84,7 +84,7 @@
 //    public void testUpdateProduct() throws ProductServiceException {
 //        String updEn = "Updated by " + this.getClass().getSimpleName() + " at " + new Timestamp(System.currentTimeMillis());
 //        String updRu = "Обновлено " + this.getClass().getSimpleName() + " at " + new Timestamp(System.currentTimeMillis());
-//        Product product = productService.findProductByCode(PRODUCT_CODE);
+//        Event product = productService.findProductByCode(PRODUCT_CODE);
 //        product.setNotesEn(updEn);
 //        product.setNotesRu(updRu);
 //        boolean result = productService.updateProduct(product);
@@ -95,7 +95,7 @@
 //    @Ignore
 //    @Ordinal(order = 7)
 //    public void testDeleteProduct() {
-//        Product testProduct = createTestProduct();
+//        Event testProduct = createTestProduct();
 //        boolean result = productService.deleteProduct(testProduct);
 //        assertTrue(result);
 //    }

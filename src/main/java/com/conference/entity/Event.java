@@ -1,15 +1,14 @@
-package com.conference.domain;
+package com.conference.entity;
 
-//import java.sql.Date;
 import java.time.LocalDateTime;
 
-public class Product {
+public class Event {
 
     private Integer id;
     private String title;
     private LocalDateTime dateTime;
 
-    public Product() {
+    public Event() {
     }
 
     public Integer getId() {

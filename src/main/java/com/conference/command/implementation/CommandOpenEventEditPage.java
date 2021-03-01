@@ -5,9 +5,9 @@ import com.conference.config.Configuration;
 import com.conference.controller.Direction;
 import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
-import com.conference.domain.Product;
+import com.conference.entity.Event;
 import com.conference.exceptions.ProductServiceException;
-import com.conference.service.IProductServ;
+import com.conference.service.EventService;
 import com.conference.service.ServiceFactory;
 import com.conference.service.TopicService;
 
@@ -18,10 +18,10 @@ public class CommandOpenEventEditPage implements Command {
         ExecutionResult result = new ExecutionResult();
 
         try {
-            IProductServ prodServ = ServiceFactory.getProductService();
+            EventService prodServ = ServiceFactory.getEventService();
             TopicService topicService = ServiceFactory.getTopicService();
             int id = Integer.parseInt(content.getRequestParameter("id")[0]);
-            Product product = prodServ.findProductById(id);
+            Event event = prodServ.findProductById(id);
 
             result.setPage(Configuration.getInstance().getPage("login"));
             result.setDirection(Direction.FORWARD);

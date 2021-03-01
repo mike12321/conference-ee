@@ -6,7 +6,7 @@ import com.conference.controller.Direction;
 import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
 import com.conference.entity.User;
-import com.conference.service.IUserServ;
+import com.conference.service.UserService;
 import com.conference.service.ServiceFactory;
 import org.apache.log4j.Logger;
 
@@ -25,7 +25,7 @@ public class CommandRegisterUser implements Command {
             User user = new User(username, password);
 
             result.setDirection(Direction.FORWARD);
-            IUserServ userServ = ServiceFactory.getUserService();
+            UserService userServ = ServiceFactory.getUserService();
 
             if (userServ.addUser(user)) {
                 result.addSessionAttribute("user", userServ.findUser(username, password));
