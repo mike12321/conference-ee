@@ -22,24 +22,6 @@ public abstract class DaoFactory {
      */
     public abstract IProductDao getProductDao();
 
-    /**
-     * Creates Invoice DAO
-     * @return Invoice DAO
-     */
-    public abstract IInvoiceDao getInvoiceDao();
-
-    /**
-     * Creates Payment DAO
-     * @return Payment DAO
-     */
-    public abstract IPaymentDao getPaymentDao();
-
-    /**
-     * Creates Transaction DAO
-     * @return Transaction DAO
-     */
-    public abstract ITransactionDao getTransactionDao();
-
     public abstract TopicDao getTopicDao();
 
     /**

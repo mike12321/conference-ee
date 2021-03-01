@@ -141,21 +141,6 @@ public class MySQLDaoFactory extends DaoFactory {
     }
 
     @Override
-    public IInvoiceDao getInvoiceDao() {
-        return new InvoiceDaoImpl(connection);
-    }
-
-    @Override
-    public IPaymentDao getPaymentDao() {
-        return new PaymentDaoImpl(connection);
-    }
-
-    @Override
-    public ITransactionDao getTransactionDao() {
-        return new TransactionDaoImpl(connection);
-    }
-
-    @Override
     public TopicDao getTopicDao() {
         return new TopicDaoImpl(connection);
     }

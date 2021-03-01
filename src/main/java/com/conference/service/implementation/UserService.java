@@ -1,7 +1,6 @@
 package com.conference.service.implementation;
 
 import com.conference.exceptions.*;
-import com.conference.service.Button;
 import com.conference.service.IUserServ;
 import com.conference.dao.DaoFactory;
 import com.conference.dao.DataBaseSelector;
@@ -25,7 +24,6 @@ public class UserService implements IUserServ {
         }
     }
 
-    @Button
     @Override
     public User findUser(String name, String password) throws UnknownUserException {
         User user;
@@ -54,7 +52,6 @@ public class UserService implements IUserServ {
                 || user.getPassword().isEmpty());
     }
 
-    @Button
     @Override
     public synchronized boolean addUser(User user) {
         boolean result;

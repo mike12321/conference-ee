@@ -5,14 +5,10 @@ import com.conference.dao.DataBaseSelector;
 import com.conference.dao.IProductDao;
 import com.conference.domain.Product;
 import com.conference.exceptions.*;
-import com.conference.service.Button;
 import com.conference.service.IProductServ;
 import org.apache.log4j.Logger;
 
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class ProductService implements IProductServ {
 
@@ -54,9 +50,6 @@ public class ProductService implements IProductServ {
         return result;
     }
 
-
-
-    @Button
     @Override
     public List<Product> findAllProducts() throws ProductServiceException {
         List<Product> products;
@@ -89,7 +82,6 @@ public class ProductService implements IProductServ {
 //        return productSet;
 //    }
 
-    @Button
     @Override
     public List<Product> findProducts(Integer from, Integer offset) throws ProductServiceException {
         List<Product> products;
@@ -135,7 +127,6 @@ public class ProductService implements IProductServ {
 //        return product;
 //    }
 
-    @Button
     @Override
     public synchronized boolean addProduct(Product product) {
         boolean result;
@@ -151,7 +142,6 @@ public class ProductService implements IProductServ {
         return result;
     }
 
-    @Button
     @Override
     public synchronized boolean updateProduct(Product product) {
         boolean result;
@@ -199,7 +189,6 @@ public class ProductService implements IProductServ {
 //        return result;
 //    }
 
-//    @Button
     @Override
     public synchronized boolean deleteProduct(int id) {
         boolean result;

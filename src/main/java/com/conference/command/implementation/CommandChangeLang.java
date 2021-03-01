@@ -18,9 +18,9 @@ public class CommandChangeLang implements Command {
         Map<String, String[]> parameters = content.getRequestParameters();
         String lang = parameters.get("lang")[0];
 
-        if (lang.toLowerCase().equals("en"))
+        if (lang.equalsIgnoreCase("en"))
             result.addSessionAttribute("locale", new Locale("en", "EN"));
-        if (lang.toLowerCase().equals("ru"))
+        if (lang.equalsIgnoreCase("ru"))
             result.addSessionAttribute("locale", new Locale("ru", "RU"));
 
         parameters.forEach((key, value) -> {

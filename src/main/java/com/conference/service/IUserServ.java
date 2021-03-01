@@ -28,7 +28,7 @@ public interface IUserServ {
 //     * @return List of users
 //     * @throws UnknownUserException if unable to retrieve information for certain reasons
 //     */
-//    @Button
+
 //    List<User> findUsers(Integer from, Integer offset) throws UnknownUserException;
 //
 //    /**

@@ -5,7 +5,6 @@ import com.conference.config.Configuration;
 import com.conference.controller.Direction;
 import com.conference.controller.ExecutionResult;
 import com.conference.controller.SessionRequestContent;
-import com.conference.domain.UserCart;
 import com.conference.entity.User;
 import com.conference.exceptions.UnknownUserException;
 import com.conference.service.IUserServ;

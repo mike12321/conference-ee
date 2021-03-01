@@ -19,7 +19,6 @@ public interface IProductServ {
      * @return List of all products
      * @throws ProductServiceException if unable to retrieve information for certain reasons
      */
-    @Button
     List<Product> findAllProducts() throws ProductServiceException;
 
     /**
@@ -36,7 +35,6 @@ public interface IProductServ {
      * @return List of products
      * @throws ProductServiceException if unable to retrieve information for certain reasons
      */
-    @Button
     List<Product> findProducts(Integer from, Integer offset) throws ProductServiceException;
 
     /**
@@ -52,7 +50,6 @@ public interface IProductServ {
      * @param product Product to add
      * @return true if operation success and false if fails
      */
-    @Button
     boolean addProduct(Product product);
 
     /**
@@ -60,7 +57,7 @@ public interface IProductServ {
      * @param product - Product to update
      * @return true if operation success and false if fails
      */
-//    @Button
+
     boolean updateProduct(Product product);
 
     /**
@@ -75,6 +72,6 @@ public interface IProductServ {
      * @param id product id
      * @return true if operation success and false if fails
      */
-//    @Button
+
     boolean deleteProduct(int id);
 }
