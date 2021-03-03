@@ -18,13 +18,13 @@ public class EventServiceImpl implements EventService {
     private static final DataBaseSelector source = DataBaseSelector.MY_SQL;
 
     private static DaoFactory daoFactory;
-    private static EventDao productDao;
+    private static EventDao eventDao;
     private static UserEventDao userEventDao;
 
     static {
         try {
             daoFactory = DaoFactory.getDaoFactory(source);
-            productDao = daoFactory.getProductDao();
+            eventDao = daoFactory.getEventDao();
         } catch (IncorrectPropertyException | DataBaseConnectionException | DataBaseNotSupportedException ex) {
             log.error(ex);
         }
@@ -32,7 +32,7 @@ public class EventServiceImpl implements EventService {
 
     /** User validation method to check user before storing in DB */
 
-    public boolean validateProductData(Event event) {
+    public boolean validateEventData(Event event) {
         return !(event.getTitle() == null || event.getTitle().isEmpty()
                 || event.getDateTime() == null);
     }
@@ -44,12 +44,12 @@ public class EventServiceImpl implements EventService {
     /** Data access and storing methods */
 
     @Override
-    public Integer calculateProductsNumber() {
+    public Integer calculateEventsNumber() {
         Integer result = 0;
         try {
             daoFactory.beginTransaction();
-            productDao = daoFactory.getProductDao();
-            result = productDao.calculateProductNumber();
+            eventDao = daoFactory.getEventDao();
+            result = eventDao.calculateEventNumber();
             daoFactory.commitTransaction();
         } catch (DataBaseConnectionException | DataNotFoundException ex) {
             log.error(ex);
@@ -58,89 +58,72 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findAllProducts() throws ProductServiceException {
+    public List<Event> findAllEvents() throws EventServiceException {
         List<Event> events;
         try {
             daoFactory.open();
-            productDao = daoFactory.getProductDao();
-            events = productDao.findAllProductsInDB();
+            eventDao = daoFactory.getEventDao();
+            events = eventDao.findAllEventsInDB();
             daoFactory.close();
         } catch (DataBaseConnectionException | DataNotFoundException ex) {
             log.error(ex);
-            throw new ProductServiceException();
-        }
-        return events;
-    }
-
-//    @Override
-//    public Set<String> createProductSet() throws ProductServiceException {
-//        Set<String> productSet = new HashSet<>();
-//        List<Event> products = new LinkedList<>();
-//        try {
-//            daoFactory.open();
-//            productDao = daoFactory.getProductDao();
-//            products = productDao.findAllProductsInDB();
-//            daoFactory.close();
-//            products.forEach((product) -> {productSet.add(product.getCode());});
-//        } catch (DataBaseConnectionException | DataNotFoundException ex) {
-//            log.error(ex);
-//            throw new ProductServiceException();
-//        }
-//        return productSet;
-//    }
-
-    @Override
-    public List<Event> findProducts(Integer from, Integer offset) throws ProductServiceException {
-        List<Event> events;
-        try {
-            daoFactory.open();
-            productDao = daoFactory.getProductDao();
-            events = productDao.findProductsInDB(from, offset);
-            daoFactory.close();
-        } catch (DataBaseConnectionException | DataNotFoundException ex) {
-            log.error(ex);
-            throw new ProductServiceException();
+            throw new EventServiceException();
         }
         return events;
     }
 
     @Override
-    public Event findProductById(int id) throws ProductServiceException {
+    public List<Event> findEvents(Integer from, Integer offset) throws EventServiceException {
+        List<Event> events;
+        try {
+            daoFactory.open();
+            eventDao = daoFactory.getEventDao();
+            events = eventDao.findEventsInDB(from, offset);
+            daoFactory.close();
+        } catch (DataBaseConnectionException | DataNotFoundException ex) {
+            log.error(ex);
+            throw new EventServiceException();
+        }
+        return events;
+    }
+
+    @Override
+    public Event findEventById(int id) throws EventServiceException {
         Event event;
         try {
             daoFactory.open();
-            productDao = daoFactory.getProductDao();
-            event = productDao.findProductById(id);
+            eventDao = daoFactory.getEventDao();
+            event = eventDao.findEventById(id);
             daoFactory.close();
         } catch (DataBaseConnectionException | DataNotFoundException ex) {
             log.error(ex);
-            throw new ProductServiceException();
+            throw new EventServiceException();
         }
         return event;
     }
 
-//    @Override
-//    public Event findProductByCode(String code) throws ProductServiceException {
-//        Event product = new Event();
-//        try {
-//            daoFactory.open();
-//            productDao = daoFactory.getProductDao();
-//            product = productDao.findProductByCode(code);
-//            daoFactory.close();
-//        } catch (DataBaseConnectionException | DataNotFoundException ex) {
-//            log.error(ex);
-//            throw new ProductServiceException();
-//        }
-//        return product;
-//    }
+    @Override
+    public Event findEventByTitle(String title) throws EventServiceException {
+        Event event = new Event();
+        try {
+            daoFactory.open();
+            eventDao = daoFactory.getEventDao();
+            event = eventDao.findEventByTitle(title);
+            daoFactory.close();
+        } catch (DataBaseConnectionException | DataNotFoundException ex) {
+            log.error(ex);
+            throw new EventServiceException();
+        }
+        return event;
+    }
 
     @Override
-    public synchronized boolean addProduct(Event event) {
+    public synchronized boolean addEvent(Event event) {
         boolean result;
         try {
             daoFactory.beginTransaction();
-            productDao = daoFactory.getProductDao();
-            result = validateProductData(event) && productDao.addProductToDB(event);
+            eventDao = daoFactory.getEventDao();
+            result = validateEventData(event) && eventDao.addEventToDB(event);
             daoFactory.commitTransaction();
         } catch (DataBaseConnectionException ex) {
             log.error(ex);
@@ -150,12 +133,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public synchronized boolean updateProduct(Event event) {
+    public synchronized boolean updateEvent(Event event) {
         boolean result;
         try {
             daoFactory.beginTransaction();
-            productDao = daoFactory.getProductDao();
-            result = validateProductData(event) && productDao.updateProductInDB(event);
+            eventDao = daoFactory.getEventDao();
+            result = validateEventData(event) && eventDao.updateEventInDB(event);
             daoFactory.commitTransaction();
         } catch (DataBaseConnectionException ex) {
             log.error(ex);
@@ -164,46 +147,14 @@ public class EventServiceImpl implements EventService {
         return result;
     }
 
-//    public synchronized boolean updateProducts(List<Event> products) {
-//        try {
-//            daoFactory.beginTransaction();
-//            productDao = daoFactory.getProductDao();
-//            for (Event product : products)
-//                if (!productDao.updateProductInDB(product)) {
-//                    daoFactory.rollbackTransaction();
-//                    return false;
-//                }
-//            daoFactory.commitTransaction();
-//            return true;
-//        } catch (DataBaseConnectionException ex) {
-//            log.error(ex);
-//            return false;
-//        }
-//    }
-
-//    @Override
-//    public synchronized boolean deleteProduct(Event product) {
-//        boolean result;
-//        try {
-//            daoFactory.beginTransaction();
-//            productDao = daoFactory.getProductDao();
-//            result = productDao.deleteProductFromDB(product.getId());
-//            daoFactory.commitTransaction();
-//        } catch (DataBaseConnectionException ex) {
-//            log.error(ex);
-//            return false;
-//        }
-//        return result;
-//    }
-
     @Override
-    public synchronized boolean deleteProduct(int id) {
+    public synchronized boolean deleteEvent(int id) {
         boolean result;
 
         try {
             daoFactory.beginTransaction();
-            productDao = daoFactory.getProductDao();
-            result = productDao.deleteProductFromDB(id);
+            eventDao = daoFactory.getEventDao();
+            result = eventDao.deleteEventFromDB(id);
             daoFactory.commitTransaction();
         } catch (DataBaseConnectionException ex) {
             log.error(ex);

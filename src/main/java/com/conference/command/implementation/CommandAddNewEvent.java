@@ -36,7 +36,7 @@ public class CommandAddNewEvent implements Command {
             event.setTitle(content.getRequestParameter("title")[0]);
             event.setDateTime(LocalDateTime.parse(content.getRequestParameter("date")[0], DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
 
-            if (serv.addProduct(event)) {
+            if (serv.addEvent(event)) {
                 result.setPage(conf.getPage("redirect_manageProducts"));
             }
             else {

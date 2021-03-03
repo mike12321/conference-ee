@@ -2,55 +2,56 @@ package com.conference.service;
 
 import com.conference.entity.Event;
 import com.conference.entity.UserEvent;
-import com.conference.exceptions.ProductServiceException;
+import com.conference.exceptions.EventServiceException;
 
 import java.util.List;
 
 public interface EventService {
 
     /**
-     * Calculates total number of products records in DB
-     * @return total number of products stored in DB
+     * Calculates total number of events records in DB
+     * @return total number of events stored in DB
      */
-    Integer calculateProductsNumber();
+    Integer calculateEventsNumber();
 
     /**
      * Finds all Products in DB
-     * @return List of all products
-     * @throws ProductServiceException if unable to retrieve information for certain reasons
+     * @return List of all events
+     * @throws EventServiceException if unable to retrieve information for certain reasons
      */
-    List<Event> findAllProducts() throws ProductServiceException;
+    List<Event> findAllEvents() throws EventServiceException;
 
     /**
-     * Creates a set of all product codes
-     * @return Set of all products
-     * @throws ProductServiceException if unable to retrieve information for certain reasons
-     */
-//    Set<String> createProductSet() throws ProductServiceException;
-
-    /**
-     * Finds first @param=offset products starts from @param=from row
+     * Finds first @param=offset events starts from @param=from row
      * @param from - first table line number
      * @param offset - number of records to find
-     * @return List of products
-     * @throws ProductServiceException if unable to retrieve information for certain reasons
+     * @return List of events
+     * @throws EventServiceException if unable to retrieve information for certain reasons
      */
-    List<Event> findProducts(Integer from, Integer offset) throws ProductServiceException;
+    List<Event> findEvents(Integer from, Integer offset) throws EventServiceException;
 
     /**
-     * Finds a product by product code
-     * @param id - product id
+     * Finds a event by event code
+     * @param id - event id
      * @return
-     * @throws ProductServiceException if unable to retrieve information for certain reasons
+     * @throws EventServiceException if unable to retrieve information for certain reasons
      */
-    Event findProductById(int id) throws ProductServiceException;
+    Event findEventById(int id) throws EventServiceException;
+
+    /**
+     * Finds a event by event code
+     * @param title - event title
+     * @return
+     * @throws EventServiceException if unable to retrieve information for certain reasons
+     */
+    Event findEventByTitle(String title) throws EventServiceException;
 
     /**
      * Adds a new event in DB
      * @param event Event to add
      * @return true if operation success and false if fails
      */
-    boolean addProduct(Event event);
+    boolean addEvent(Event event);
 
     /**
      * Updates an existent event in DB
@@ -58,22 +59,22 @@ public interface EventService {
      * @return true if operation success and false if fails
      */
 
-    boolean updateProduct(Event event);
+    boolean updateEvent(Event event);
 
     /**
-     * Deletes product from DB
-     * @param product - Event to delete
+     * Deletes event from DB
+     * @param event - Event to delete
      * @return true if operation success and false if fails
      */
-//    boolean deleteProduct(Event product);
+//    boolean deleteProduct(Event event);
 
     /**
-     * Deletes product from DB by code
-     * @param id product id
+     * Deletes event from DB by code
+     * @param id event id
      * @return true if operation success and false if fails
      */
 
-    boolean deleteProduct(int id);
+    boolean deleteEvent(int id);
 
     boolean assignUserToEvent(UserEvent userEvent);
 }

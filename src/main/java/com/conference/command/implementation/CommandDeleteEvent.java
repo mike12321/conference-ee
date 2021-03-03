@@ -19,10 +19,10 @@ public class CommandDeleteEvent implements Command {
         Configuration configuration = Configuration.getInstance();
 
         try {
-            EventService productServ = new EventServiceImpl();
+            EventService eventService = new EventServiceImpl();
             int id = Integer.parseInt(content.getRequestParameter("id")[0]);
 
-            productServ.deleteProduct(id);
+            eventService.deleteEvent(id);
             result.setDirection(Direction.FORWARD);
             result.setPage(configuration.getPage("redirect_home"));
         }

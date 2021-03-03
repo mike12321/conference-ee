@@ -18,11 +18,12 @@ public class EventDaoImpl extends GenericAbstractDao<Event> implements EventDao 
     private static String SQL_select_base =         "SELECT * FROM event ";
     private static String SQL_selectAll =           "SELECT * FROM event;";
     private static String SQL_selectById =          "SELECT * FROM event WHERE id=?;";
-    private static String SQL_addNewEvent =       "INSERT INTO event (title, date_time) " +
+    private static String SQL_selectByTitle =       "SELECT * FROM event WHERE title=?;";
+    private static String SQL_addNewEvent =         "INSERT INTO event (title, date_time) " +
                                                     "VALUES (?,?);";
-    private static String SQL_updateProductEvent =       "UPDATE event SET title=?, date_time=? " +
+    private static String SQL_updateProductEvent =  "UPDATE event SET title=?, date_time=? " +
                                                     "WHERE id=?;";
-    private static String SQL_deleteEventById =   "DELETE FROM event WHERE id=?;";
+    private static String SQL_deleteEventById =     "DELETE FROM event WHERE id=?;";
 
     /** Private methods for serving methods implementing DAO interface */
 
@@ -44,39 +45,44 @@ public class EventDaoImpl extends GenericAbstractDao<Event> implements EventDao 
     }
 
     @Override
-    public Integer calculateProductNumber() throws DataNotFoundException {
+    public Integer calculateEventNumber() throws DataNotFoundException {
         return calculateRowCounts(connection, "event");
     }
 
     @Override
-    public List<Event> findAllProductsInDB() throws DataNotFoundException {
+    public List<Event> findAllEventsInDB() throws DataNotFoundException {
         List<Event> events = findAll(connection, Event.class, SQL_selectAll);
         return events;
     }
 
     @Override
-    public List<Event> findProductsInDB(Integer first, Integer offset) throws DataNotFoundException {
+    public List<Event> findEventsInDB(Integer first, Integer offset) throws DataNotFoundException {
         return findAllFromTo(connection, Event.class, first, offset, SQL_select_base);
     }
 
     @Override
-    public Event findProductById(Integer id) throws DataNotFoundException {
+    public Event findEventById(Integer id) throws DataNotFoundException {
         return findBy(connection, Event.class, SQL_selectById, id);
     }
 
     @Override
-    public boolean addProductToDB(Event event) {
+    public Event findEventByTitle(String title) throws DataNotFoundException {
+        return findBy(connection, Event.class, SQL_selectById, title);
+    }
+
+    @Override
+    public boolean addEventToDB(Event event) {
         return addToDB(connection, event, SQL_addNewEvent);
     }
 
     @Override
-    public boolean updateProductInDB(Event event) {
+    public boolean updateEventInDB(Event event) {
         Integer id = event.getId();
         return updateInDB(connection, event, SQL_updateProductEvent, 3, id);
     }
 
     @Override
-    public boolean deleteProductFromDB(Integer id) {
+    public boolean deleteEventFromDB(Integer id) {
         return deleteFromDB(connection, SQL_deleteEventById, id);
     }
 }

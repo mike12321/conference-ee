@@ -22,14 +22,15 @@ public class CommandUpdateEvent implements Command {
         ExecutionResult result = new ExecutionResult();
 
         try {
-            EventService productServ = ServiceFactory.getEventService();
+            EventService eventService = ServiceFactory.getEventService();
+
             Event event = new Event();
 
             event.setId(Integer.parseInt(content.getRequestParameter("id")[0]));
             event.setDateTime(LocalDateTime.parse(content.getRequestParameter("date")[0]));
             event.setTitle(content.getRequestParameter("title")[0]);
 
-            productServ.updateProduct(event);
+            eventService.updateEvent(event);
             result.setDirection(Direction.FORWARD);
             result.setPage(configuration.getPage("redirect_home"));
         } catch (Exception exception) {

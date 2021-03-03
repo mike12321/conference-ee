@@ -136,7 +136,7 @@ public class MySQLDaoFactory extends DaoFactory {
     }
 
     @Override
-    public EventDao getProductDao() {
+    public EventDao getEventDao() {
         return new EventDaoImpl(connection);
     }
 

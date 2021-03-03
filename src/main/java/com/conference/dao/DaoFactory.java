@@ -20,7 +20,7 @@ public abstract class DaoFactory {
      * Event User DAO
      * @return Event DAO
      */
-    public abstract EventDao getProductDao();
+    public abstract EventDao getEventDao();
 
     public abstract TopicDao getTopicDao();
 

@@ -23,11 +23,11 @@ public class CommandOpenMainPage implements Command {
         ExecutionResult result = new ExecutionResult();
         result.setDirection(Direction.FORWARD);
         try {
-            EventService productServ = ServiceFactory.getEventService();
-            int totalPages = (int) Math.floor(productServ.calculateProductsNumber() / EVENTS_PER_PAGE) + 1;
+            EventService eventService = ServiceFactory.getEventService();
+            int totalPages = (int) Math.floor(eventService.calculateEventsNumber() / EVENTS_PER_PAGE) + 1;
             int pageNum = content.checkRequestParameter("pageNum") ?
                     Integer.parseInt(content.getRequestParameter("pageNum")[0]) : 1;
-            List<Event> events = productServ.findProducts((pageNum - 1) * EVENTS_PER_PAGE, EVENTS_PER_PAGE);
+            List<Event> events = eventService.findEvents((pageNum - 1) * EVENTS_PER_PAGE, EVENTS_PER_PAGE);
             result.addRequestAttribute("events", events);
             result.addRequestAttribute("totalPages", totalPages);
             result.addRequestAttribute("pageNum", pageNum);

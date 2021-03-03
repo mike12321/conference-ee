@@ -27,7 +27,7 @@ public class CommandOpenEventDetailsPage implements Command {
             EventService prodServ = ServiceFactory.getEventService();
             TopicService topicService = ServiceFactory.getTopicService();
             int id = Integer.parseInt(content.getRequestParameter("id")[0]);
-            Event event = prodServ.findProductById(id);
+            Event event = prodServ.findEventById(id);
             List<Topic> topics = topicService.findByEventId(id);
 
             result.setDirection(Direction.FORWARD);
